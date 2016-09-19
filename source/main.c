@@ -1045,7 +1045,7 @@ int main() {
 	consoleInit(GFX_BOTTOM, NULL);
 
 
-	printf("BootNTR 2.4\n");
+	printf("BootNTR 3.4\n");
 	ntrConfig = &g_ntrConfig;
 	bnConfig = &g_bnConfig;
 	ret = bnBootNTR();
