@@ -803,7 +803,7 @@ dbgKernelCacheInterface cacheInterface_Old111 = {
 
 dbgKernelCacheInterface cacheInterface_Old112 = {
 	//for old 3ds 11.2
-	(void*)0xFFF255A8,
+	(void*)0xFFF255C8,
 	(void*)0xFFF1D7F4,
 	(void*)0xFFF1D58C,
 	(void*)0xFFF1FCEC
