@@ -4,7 +4,7 @@ Boots NTR CFW.
 
 # Compatibility
 
-This is compatible with 11.0 and 11.1 firmware on all devices. 
+This is compatible with most firmwares between 9.2 and 11.2 firmware on all devices. 
 
 # Future updates
 
