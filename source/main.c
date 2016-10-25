@@ -817,6 +817,8 @@ void kernelCallback() {
 				cache = &cacheInterface_NEW110;
 			else if (firmVersion == SYSTEM_VERSION(11, 1, 0))
 				cache = &cacheInterface_NEW111;
+			else if (firmVersion == SYSTEM_VERSION(11, 2, 0))
+				cache = &cacheInterface_NEW111; // 11.1 is the same as 11.2
 		}
 		else
 		{
@@ -828,6 +830,8 @@ void kernelCallback() {
 				cache = &cacheInterface_Old110;
 			else if (firmVersion == SYSTEM_VERSION(11, 1, 0))
 				cache = &cacheInterface_Old111;
+			else if (firmVersion == SYSTEM_VERSION(11, 2, 0))
+				cache = &cacheInterface_Old111; // 11.1 is the same as 11.2
 		}
 		*(int *)(svc_patch_addr + 8) = 0xE1A00000; //NOP
 		*(int *)(svc_patch_addr) = 0xE1A00000; //NOP
