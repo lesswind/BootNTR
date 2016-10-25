@@ -233,7 +233,7 @@ void bnInitParamsByFirmware() {
 			bnConfig->FSPatchAddr = 0x0010EED4;
 			bnConfig->SMPatchAddr = 0x0010189C;
 		}
-		if (kernelVersion == SYSTEM_VERSION(2, 51, 2)) {
+		if (kernelVersion == SYSTEM_VERSION(2, 51, 2) || kernelVersion = SYSTEM_VERSION(2, 52, 0)) {
 			// old3ds 11.1.0
 			ntrConfig->firmVersion = SYSTEM_VERSION(11, 1, 0);
 			ntrConfig->PMSvcRunAddr = 0x00103154;
@@ -331,7 +331,7 @@ void bnInitParamsByFirmware() {
 			bnConfig->SMPatchAddr = 0x0010189C;
 		}
 
-		if (kernelVersion == SYSTEM_VERSION(2, 51, 2)) {
+		if (kernelVersion == SYSTEM_VERSION(2, 51, 2) || kernelVersion = SYSTEM_VERSION(2, 52, 0)) {
 			// new3ds 11.1
 			ntrConfig->firmVersion = SYSTEM_VERSION(11, 1, 0);
                         ntrConfig->PMSvcRunAddr = 0x00103150;
