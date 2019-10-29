@@ -2,11 +2,15 @@
 
 Boots NTR CFW.
 
-# 11.1.0
+# Compatibility
 
-Updated home menu support for all regions on 11.1.0.
+This is compatible with most firmwares between 9.2 and 11.2 firmware on USA, EUR, and JPN regions. 
 
-Note this is only home menu support, not 11.1 NFIRM support (yet).
+# Future updates
+
+Add support for other regions
+
+If a future update breaks it, please open an issue stating your console, firmware version, and attach _all_ dumps on the SD card root.
 
 # Latest Build
 

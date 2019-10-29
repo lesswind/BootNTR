@@ -244,6 +244,17 @@ void bnInitParamsByFirmware() {
 			bnConfig->FSPatchAddr = 0x0010F024;
 			bnConfig->SMPatchAddr = 0x0010189C;
 		}
+		if (kernelVersion == SYSTEM_VERSION(2, 52, 0)) {
+			// old3ds 11.2.0
+			ntrConfig->firmVersion = SYSTEM_VERSION(11, 2, 0);
+			ntrConfig->PMSvcRunAddr = 0x00103154;
+			ntrConfig->ControlMemoryPatchAddr1 = 0xDFF88468;
+			ntrConfig->ControlMemoryPatchAddr2 = 0xDFF8846C;
+			
+			bnConfig->SvcPatchAddr = 0xDFF82288;
+			bnConfig->FSPatchAddr = 0x0010F024;
+			bnConfig->SMPatchAddr = 0x0010189C;
+		}
 	} else {
 		ntrConfig->IoBasePad = 0xfffc2000;
 		ntrConfig->IoBaseLcd = 0xfffc4000;
@@ -334,6 +345,17 @@ void bnInitParamsByFirmware() {
 		if (kernelVersion == SYSTEM_VERSION(2, 51, 2)) {
 			// new3ds 11.1
 			ntrConfig->firmVersion = SYSTEM_VERSION(11, 1, 0);
+                        ntrConfig->PMSvcRunAddr = 0x00103150;
+			ntrConfig->ControlMemoryPatchAddr1 = 0xDFF88598;
+			ntrConfig->ControlMemoryPatchAddr2 = 0xDFF8859C;
+			
+			bnConfig->SvcPatchAddr = 0xDFF8226C;
+			bnConfig->FSPatchAddr = 0x0010F024;
+			bnConfig->SMPatchAddr = 0x0010189C;
+		}
+		if (kernelVersion == SYSTEM_VERSION(2, 52, 0)) {
+			// new3ds 11.2
+			ntrConfig->firmVersion = SYSTEM_VERSION(11, 2, 0);
                         ntrConfig->PMSvcRunAddr = 0x00103150;
 			ntrConfig->ControlMemoryPatchAddr1 = 0xDFF88598;
 			ntrConfig->ControlMemoryPatchAddr2 = 0xDFF8859C;
@@ -739,6 +761,14 @@ dbgKernelCacheInterface cacheInterface_NEW111 = {
 	(void*)0xFFF202A8
 };
 
+dbgKernelCacheInterface cacheInterface_NEW112 = {
+	//for new 3ds 11.2
+	(void*)0xFFF26210,
+	(void*)0xFFF1DF8C,
+	(void*)0xFFF1DC34,
+	(void*)0xFFF202C8
+};
+
 dbgKernelCacheInterface cacheInterface_Old90 = {
 	//for old 3ds 9.0
 	(void*)0xFFF24B54,
@@ -771,6 +801,14 @@ dbgKernelCacheInterface cacheInterface_Old111 = {
 	(void*)0xFFF1FCCC
 };
 
+dbgKernelCacheInterface cacheInterface_Old112 = {
+	//for old 3ds 11.2
+	(void*)0xFFF255C8,
+	(void*)0xFFF1D7F4,
+	(void*)0xFFF1D58C,
+	(void*)0xFFF1FCEC
+};
+
 void kernelCallback() {
 	u32 svc_patch_addr = g_bnConfig.SvcPatchAddr;
 	vu32 i;
@@ -795,6 +833,8 @@ void kernelCallback() {
 				cache = &cacheInterface_NEW110;
 			else if (firmVersion == SYSTEM_VERSION(11, 1, 0))
 				cache = &cacheInterface_NEW111;
+			else if (firmVersion == SYSTEM_VERSION(11, 2, 0))
+				cache = &cacheInterface_NEW112;
 		}
 		else
 		{
@@ -806,6 +846,8 @@ void kernelCallback() {
 				cache = &cacheInterface_Old110;
 			else if (firmVersion == SYSTEM_VERSION(11, 1, 0))
 				cache = &cacheInterface_Old111;
+			else if (firmVersion == SYSTEM_VERSION(11, 2, 0))
+				cache = &cacheInterface_Old112;
 		}
 		*(int *)(svc_patch_addr + 8) = 0xE1A00000; //NOP
 		*(int *)(svc_patch_addr) = 0xE1A00000; //NOP
